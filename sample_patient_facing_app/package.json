@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "dom-parser": "^0.1.6",
+    "node-fetch": "^3.2.4",
+    "xml-js": "^1.6.11"
+  },
+  "type": "module"
+}
