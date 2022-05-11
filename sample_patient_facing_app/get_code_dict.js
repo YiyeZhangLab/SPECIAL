@@ -30,6 +30,7 @@ var conditions = [
     'Placental infarct',
     'Pre-eclampsia',
 ]
+
 var code_dict = {}
 async function getCodes() {
     for (let i = 0; i < conditions.length; i++) {

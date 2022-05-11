@@ -1,8 +1,12 @@
 {
-  "dependencies": {
-    "dom-parser": "^0.1.6",
-    "node-fetch": "^3.2.4",
-    "xml-js": "^1.6.11"
+  "name": "epic",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "type": "module"
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": ""
 }

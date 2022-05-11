@@ -5,7 +5,8 @@
 
 	<script src='dist/fhir-client-v2.js'></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fast-xml-parser/4.0.7/fxparser.js"></script>
+  <Script src="https://cdnjs.cloudflare.com/ajax/libs/x2js/1.2.0/xml2json.js"></script>
   <style>
     #main{background:lightgray; margin:1em; padding:1em;font-size:2em;}
   </style>
@@ -22,9 +23,62 @@
     FHIR.oauth2.ready()
     .then(function(client){ 
       myApp.smart = client
+      getPatientInfo()
       doRequests()
     })
+    async function getPatientInfo(){
+      const url = myApp.smart.state.serverUrl + "/Patient/" + myApp.smart.patient.id
+      let race = ""
+      let maritalStatus =""
+      try {
+        const response = await fetch(url, {
+            headers: {
+                authorization: "Bearer "+myApp.smart.state.tokenResponse.access_token
+            }
+        })
+        const text = await response.text()
+        console.log(text)
+        var x2js = new X2JS();
+        var obj = x2js.xml_str2json( text );
+        // console.log(jsonObj)
+        // const parser = new fxparser.XMLParser();
+        // const obj = parser.parse(text);
+        // console.log(obj.Patient.extension[0].extension.at(-1))
+        // parser = new DOMParser();
+        // xmlDoc = parser.parseFromString(text,"text/xml");
+        // console.log(xmlDoc)
+        // Get race
+        
+        if(Array.isArray(obj.Patient.extension[0].extension)){
+            race = obj.Patient.extension[0].extension.at(-1).valueString._value
+        } else {
+            race = obj.Patient.extension[0].extension.valueString._value // Camila Lopez, for race unknow
+        }
 
+        // Marrital Status
+        maritalStatus = obj.Patient.maritalStatus.text._value
+        console.log(race)
+        console.log(maritalStatus)
+      } catch(e){
+          console.log(e)
+      }
+      const result = {
+        asian: 0,
+        white: 0,
+        single: 1
+      }
+      if (race.toLowerCase()=="asian"){
+        result.asian = 1
+      }
+      if (maritalStatus.toLowerCase()=="single"){
+        result.single = 1
+      }
+      console.log(result)
+      var toInsert = result
+      $("#main").html(toInsert)
+    }
+
+    
     async function doRequests(){
 
       var loincs = [ encodeURIComponent("http://loinc.org|4548-4") ] //4548-4 = HgA1C  //4544-3 = hematocrit
@@ -39,7 +93,7 @@
 
       var response = await obs.json()
 
-      console.log(response)
+      // console.log(response)
 
       var toInsert = ""
 

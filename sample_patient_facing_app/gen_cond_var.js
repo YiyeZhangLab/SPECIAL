@@ -1,8 +1,5 @@
 import fetch from "node-fetch";
-// const jsdom = require("jsdom");
 import DomParser from "dom-parser";
-// var DomParser = require('dom-parser');
-// var parser = new DomParser();
 import fs from "fs";
 import convert from 'xml-js';
 
@@ -17,7 +14,7 @@ for (let i = 0; i < entryList.length; i++) {
     var code = entryList[i].resource.Condition.code.coding[1].code._attributes.value;
     conditions.push(code);
 }
-console.log(conditions);
+// console.log(conditions);
 
 
 const code_json = fs.readFileSync('code_dict.json', 'utf-8');
@@ -38,7 +35,36 @@ for (let i = 0; i < Object.keys(code_dict).length; i++) {
         feature_dict[code_dict[code]] = 0;
     }
 }
+// console.log(feature_dict);
+
+
+
+const patient_xml = fs.readFileSync('sample_res_patient.xml', 'utf8')
+var res_patient = await JSON.parse(convert.xml2json(patient_xml, {compact: true, spaces: 4}));
+// console.log(res_patient);
+if(Array.isArray(res_patient.Patient.extension[0].extension)){
+    var race = res_patient.Patient.extension[0].extension.at(-1).valueString._attributes.value
+} else {
+    var race = res_patient.Patient.extension[0].extension.valueString._attributes.value // Camila Lopez, for race unknow
+}
+
+// Marrital Status
+var maritalStatus = res_patient.Patient.maritalStatus.text._attributes.value
+if (race.toLowerCase()=="asian") {
+    feature_dict["asian"] = 1;
+  } else {
+    feature_dict["asian"] = 0;
+  }
+  if (race.toLowerCase()=="white") {
+    feature_dict["white"] = 1;
+  } else {
+    feature_dict["white"] = 0;
+  }
+if (maritalStatus.toLowerCase()=="single") {
+    feature_dict["single"] = 1;
+} else {
+    feature_dict["single"] = 0;
+}
+
+
 console.log(feature_dict);
-
-
-
