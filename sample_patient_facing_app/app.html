@@ -7,6 +7,12 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fast-xml-parser/4.0.7/fxparser.js"></script>
   <Script src="https://cdnjs.cloudflare.com/ajax/libs/x2js/1.2.0/xml2json.js"></script>
+
+  <script src="./yoyo/postData.js"></script>
+  <script src="./yoyo/getPrediction.js"></script>
+  <script src="./yoyo/getPatient.js"></script>
+  <script src="./yoyo/getObservation.js"></script>
+
   <style>
     #main{background:lightgray; margin:1em; padding:1em;font-size:2em;}
   </style>
@@ -17,7 +23,8 @@
   <div id="main"></div>
 
 	<script>
-
+    getPrediction().then(console.log);
+    /* 
 		var myApp = {}
 
     FHIR.oauth2.ready()
@@ -114,6 +121,7 @@
       $("#main").html(toInsert)
 
     }
+    */
 	</script>
 
 </body>
