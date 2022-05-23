@@ -4,6 +4,7 @@
 <head>
 
 	<script src='dist/fhir-client-v2.js'></script>
+  <!-- <script src="./gen_cond_var.js" type="module"></script> -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fast-xml-parser/4.0.7/fxparser.js"></script>
   <Script src="https://cdnjs.cloudflare.com/ajax/libs/x2js/1.2.0/xml2json.js"></script>
@@ -16,8 +17,9 @@
 
   <div id="main"></div>
 
-	<script>
-
+	<script type="module">
+    import parseCondInfo from "./gen_cond_var.js"
+    // const parseCondInfo = require("./gen_cond_var.js");
 		var myApp = {}
 
     FHIR.oauth2.ready()
@@ -25,6 +27,7 @@
       myApp.smart = client
       getPatientInfo()
       doRequests()
+      
     })
     async function getPatientInfo(){
       const url = myApp.smart.state.serverUrl + "/Patient/" + myApp.smart.patient.id
@@ -40,13 +43,6 @@
         console.log(text)
         var x2js = new X2JS();
         var obj = x2js.xml_str2json( text );
-        // console.log(jsonObj)
-        // const parser = new fxparser.XMLParser();
-        // const obj = parser.parse(text);
-        // console.log(obj.Patient.extension[0].extension.at(-1))
-        // parser = new DOMParser();
-        // xmlDoc = parser.parseFromString(text,"text/xml");
-        // console.log(xmlDoc)
         // Get race
         
         if(Array.isArray(obj.Patient.extension[0].extension)){
@@ -65,7 +61,7 @@
       const result = {
         asian: 0,
         white: 0,
-        single: 1
+        single: 1,
       }
       if (race.toLowerCase()=="asian"){
         result.asian = 1
@@ -73,7 +69,33 @@
       if (maritalStatus.toLowerCase()=="single"){
         result.single = 1
       }
+
+      // Setting other feature fields here using 
+      // gen_cond_var.js code.. eg: Hypothyroidism
+      const cond_url = myApp.smart.state.serverUrl + "/Condition?" 
+      try {
+         const response = await fetch("https://fhir.epic.com/interconnect-fhir-oauth/api/FHIR/R4/Condition?patient=eZ5-7rYdWqgv3jSgIvx.SPw3&category=encounter-diagnosis", {
+            headers: {
+                authorization: "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ1cm46b2lkOmZoaXIiLCJjbGllbnRfaWQiOiJkOWYwN2JlNi0yOGNkLTQ2OWEtYjJjMS1jNjU5NWNjODE5MDEiLCJlcGljLmVjaSI6InVybjplcGljOk9wZW4uRXBpYy1jdXJyZW50IiwiZXBpYy5tZXRhZGF0YSI6IjJGbC1TcHBFbnlfSWkzZWhCTmw3bFpvOVJMUWF3SnJLczIzSUw0X2IzeFB5SXhWSVh0SUFmNlp5bDNkUHh5OV9wdDZ5Zk5nM29qYmF1OGU2aU80dEFZdVRnbUFoWFJPLXQ4T2xUekY4am5BOHgtWXRxcHJJbDhGQUdtelVFQWQ0IiwiZXBpYy50b2tlbnR5cGUiOiJhY2Nlc3MiLCJleHAiOjE2NTMxMTk0NjksImlhdCI6MTY1MzExNTg2OSwiaXNzIjoidXJuOm9pZDpmaGlyIiwianRpIjoiMDQ3ZjY3NzktM2VhYi00MWJlLTk1YjItY2VmNjFmOWUzYTQxIiwibmJmIjoxNjUzMTE1ODY5LCJzdWIiOiJldk5wLUtoWXdPT3FBWm4xcFoyZW51QTMifQ.KH7zXmK-BkxCRFpzlLw-t54pfHMBBLlboI5pJ-F7LDM5Pw17MHo1IxXlYzsWwGNZG5Hf5aVRNipTl0yCUAe0x2L3EOCGxWpIkpBC0SjKHI27jkUww-GTtLfcOPUg60CUq4zqBinWkpRfHjKs48DMJbKwCQrBZAOz_Hrb7v9VPllXXr1i0OUH8aH3kb-QoUz0tNRCAil_pBAevwITHk4SyUMdUYPtDKDIt9yrU0CseobLl9KWf137jbmxldJdTgifeWXu3aQCTDElsYeyJbEgu6YKgJTda9O51j3qSPZW2MW2E1Ht8lpE5epkYyokKekNjLde9e8V9XteHocoGKyGOw"
+            }
+        })
+        const text = await response.text()
+        console.log(text);
+
+        feature_dict = parseCondInfo(text);
+        console.log(feature_dict);
+        
+      } catch(e){
+          console.log(e)
+      }
       console.log(result)
+
+      const res = await fetch('/fhir_input', {
+                  method: 'POST',
+                  body: 
+                    JSON.stringify(result)
+                });
+
       var toInsert = result
       $("#main").html(toInsert)
     }
