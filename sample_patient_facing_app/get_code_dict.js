@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-// const fetch = require('node-fetch');
+const fetch = require('node-fetch');
 
 var url = new URL("https://clinicaltables.nlm.nih.gov/api/icd9cm_dx/v3/search"), params = {terms : "Abdominal pain"}
 Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
