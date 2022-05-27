@@ -2,7 +2,9 @@
 
 This is the repo for the Cornell Spring 22 Spec Project - Special
 
-## Get Started
+# Get Started
+
+## Run Pipeline Server
 
 Open terminal, and start pipeline server
 
@@ -11,6 +13,8 @@ cd pipeline-srv
 npm install
 npm start
 ```
+
+## Run Prediction Server
 
 Open another terminal, and start prediction server
 
@@ -22,6 +26,27 @@ npm start
 
 > `npm install` only needs to be run once
 
-# Test
+# Testing
 
 Open replit and grant permission to the app, the client will post request to pipeline, pipeline should clean the raw data and post again to prediction server, and the prediction server should response with the result, which get pass over accordingly back to the client.
+
+# Client
+
+Open terminal and run:
+
+```
+npm run dev
+```
+
+This will do a next dev and the website will be hosted on localhost:3005
+
+Edit files in `/pages`
+
+To output the result to Replit, run:
+
+```
+npm build
+```
+
+This will optimize your code and export static content in `/out`
+Copy and paste everything in `/out` to replit.
