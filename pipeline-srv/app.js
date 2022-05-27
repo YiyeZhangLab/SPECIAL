@@ -26,15 +26,23 @@ app.post('/', async (req, res) => {
     
     const input = {
         isRaceWhite,
-        isRaceAsian,
+        isRaceAsian
     }
 
     console.log('> Pushing input variables to prediction server')
-    const prediction = await axios.post('http://localhost:3001/', {
-        input
-    })
-
-    res.send(prediction)
+    try {
+        const prediction = await axios.post('http://localhost:3001/', { 
+            input 
+        })
+        console.log(prediction)
+    } catch (err) {
+        console.log(err)
+    } finally {
+        res.send({
+            'We are': 'Special'
+        })
+    }
+    console.log('Done')
 })
 
 app.listen(port, () => {

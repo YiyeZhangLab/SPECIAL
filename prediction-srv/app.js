@@ -8,9 +8,9 @@ app.use(cors())
 app.use(express.json())
 
 app.post('/', (req, res) => {
-
     console.log('> Received input variables')
     const { input } = req.body
+    console.log(input)
 
     /*
     Run model and predict
@@ -18,6 +18,7 @@ app.post('/', (req, res) => {
 
     const result = {}
     res.send(result)
+    console.log('Done')
 })
 
 app.listen(port, () => {
