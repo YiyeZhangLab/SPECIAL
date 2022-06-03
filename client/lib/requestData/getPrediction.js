@@ -15,7 +15,7 @@ const getPrediction = async () => {
         Patient,
         Observation
     });
-    console.log(res);
+    console.log(`Prediction result: ${res}`);
 }
 
 export default getPrediction;
