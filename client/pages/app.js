@@ -4,13 +4,14 @@ import getPrediction from '../lib/requestData/getPrediction';
 
 const AppPage = () => {
   const [result, setResult] = useState(null);
-  useEffect( async () => {
+  useEffect(async () => {
     result = await getPrediction();
     setResult(result);
-  })
+  }, [])
   return (
     <Container>
       <Header>
+        App Page
         {JSON.stringify(result)}
       </Header>          
     </Container>
