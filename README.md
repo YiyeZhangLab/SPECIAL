@@ -35,6 +35,7 @@ Open replit and grant permission to the app, the client will post request to pip
 Open terminal and run:
 
 ```
+npm i start
 npm run build
 npm run dev
 ```
