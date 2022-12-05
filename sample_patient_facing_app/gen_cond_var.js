@@ -42,7 +42,7 @@ for (let i = 0; i < Object.keys(code_dict).length; i++) {
 
 
 const patient_xml = fs.readFileSync('./sample_res_patient.xml', 'utf8')
-var res_patient = await JSON.parse(convert.xml2json(patient_xml, {compact: true, spaces: 4}));
+var res_patient = JSON.parse(convert.xml2json(patient_xml, {compact: true, spaces: 4}));
 // console.log(res_patient);
 if(Array.isArray(res_patient.Patient.extension[0].extension)){
     var race = res_patient.Patient.extension[0].extension.at(-1).valueString._attributes.value
@@ -70,6 +70,11 @@ if (maritalStatus.toLowerCase()=="single") {
 
 
 console.log(feature_dict);
+
+
+
+
+fs.writeFile("binary_input_vars.json", JSON.stringify(feature_dict), (err) => (err) ? console.log(err) : console.log("saved success"));
 
 export default async function parseCondInfo(xml) {
     var result1 = convert.xml2json(xml, {compact: true, spaces: 4});
