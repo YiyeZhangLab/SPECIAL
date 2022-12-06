@@ -19,7 +19,7 @@ The data parsing pipeline will do the following things:
 4. For each condition, the pipeline will check whether the date of the condition is within the prenatal period.
 
 TODOs:
-1. Right now, the permission to fetch observation (social history and vital signs), condition, and encounter is not available. The data we use in the live demo was shown using the hard-coded sample data. Once switch to a client-id with valid permission setup, uncomment the code blocks in the `getCondition.js`, `getConditionPeriod.js`, `getPregnancyEnd.js`, and `getPregnancyStart.js`.
+1. Right now, the permission to fetch observation (social history and vital signs), condition, and encounter is not available. The data we use in the live demo was shown using the hard-coded sample data. Once switch to a client-id with valid permission setup (switch the oauth block in `launch.js` as directed), uncomment the code blocks in the `getCondition.js`, `getConditionPeriod.js`, `getPregnancyEnd.js`, and `getPregnancyStart.js`.
 2. Edge cases handling:
    - What if the user has multiple prenatal period on file
    - The pregnancy end period is currently determines by vital signs. Is is valid? what if there are multiple records in vital signs. 
