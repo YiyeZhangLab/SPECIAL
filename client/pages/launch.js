@@ -3,7 +3,7 @@ import { Container, Header} from 'semantic-ui-react';
 import FHIR from "fhirclient"
 
 const LaunchPage = () => {
-  // TODO: change client_id and scope, so that it contains permission for conditions and encounters
+  // TODO: replace the following chunk with the commented one below when forking to the epic.ichiyoz
   useEffect(() => {
     FHIR.oauth2.authorize({
       'client_id': '9135d0e7-e64e-4201-80f9-4f02f2596584',

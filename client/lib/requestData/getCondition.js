@@ -1,7 +1,7 @@
 import * as convert from "xml-js";
 import getConditionPeriod from "./getConditionPeriod";
 import code_dict from './code_dict.json'
-import sampleResCondSearch from "../test_data/sampleResCondSearch"
+import conditionXML from "../test_data/sampleResCondSearch"
 
 const parseCondition = async (condition_xml, pregnancyStart, pregnancyEnd, myApp) => {
     const res = JSON.parse(
@@ -52,8 +52,8 @@ const getCondition = async (myApp, pregnancyStart, pregnancyEnd) => {
     //     },
     // });
     // const conditionXML = await res.text();
-    
-    const conditionJSON = parseCondition(sampleResCondSearch, pregnancyStart, pregnancyEnd, myApp);
+
+    const conditionJSON = parseCondition(conditionXML, pregnancyStart, pregnancyEnd, myApp);
     return conditionJSON;
 };
 

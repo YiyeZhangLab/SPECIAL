@@ -1,5 +1,5 @@
 import * as convert from "xml-js";
-import encounter from "../test_data/encounter"
+import encounterXML from "../test_data/encounter"
 
 const getEncounterPeriod = (xml) => {
     var encounterResponse = convert.xml2json(xml, {compact: true, spaces: 4});
@@ -20,8 +20,8 @@ const getConditionPeriod = async (myApp, encounterId) => {
     //     },
     // });
     // const encounterXML = await res.text();
-    
-    const conditionPeriod = getEncounterPeriod(encounter);
+
+    const conditionPeriod = getEncounterPeriod(encounterXML);
     return conditionPeriod;
 };
 

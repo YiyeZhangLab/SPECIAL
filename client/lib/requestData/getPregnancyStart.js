@@ -1,5 +1,5 @@
 import * as convert from "xml-js";
-import pregnancyStatus from "../test_data/pregnancyStatus"
+import socialHistory from "../test_data/pregnancyStatus"
 
 // TODO: add check when user not permitting
 const parseSocialHistory = (xml) => {
@@ -46,7 +46,7 @@ const getPregnancyStart = async (myApp) => {
     // });
     // const socialHistory = await res.text();
 
-    const pregnancyStart = parseSocialHistory(pregnancyStatus);
+    const pregnancyStart = parseSocialHistory(socialHistory);
     return pregnancyStart;
 };
 

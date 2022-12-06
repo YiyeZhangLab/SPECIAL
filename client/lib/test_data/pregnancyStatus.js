@@ -1,4 +1,4 @@
-const pregnancyStatus = `<Bundle xmlns="http://hl7.org/fhir">
+const socialHistory = `<Bundle xmlns="http://hl7.org/fhir">
 <type value="searchset" />
 <total value="3" />
 <link>
@@ -169,4 +169,4 @@ const pregnancyStatus = `<Bundle xmlns="http://hl7.org/fhir">
 </entry>
 </Bundle>`
 
-export default pregnancyStatus;
+export default socialHistory;

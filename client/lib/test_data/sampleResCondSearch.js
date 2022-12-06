@@ -1,4 +1,4 @@
-const sampleResCondSearch = `<Bundle xmlns="http://hl7.org/fhir">
+const conditionXML = `<Bundle xmlns="http://hl7.org/fhir">
 <type value="searchset" />
 <total value="48" />
 <link>
@@ -2756,4 +2756,4 @@ const sampleResCondSearch = `<Bundle xmlns="http://hl7.org/fhir">
 </entry>
 </Bundle>`
 
-export default sampleResCondSearch;
+export default conditionXML;

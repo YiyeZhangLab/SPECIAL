@@ -1,4 +1,4 @@
-const encounter = `<Bundle xmlns="http://hl7.org/fhir">
+const encounterXML = `<Bundle xmlns="http://hl7.org/fhir">
 <type value="searchset" />
 <total value="1" />
 <link>
@@ -136,4 +136,4 @@ const encounter = `<Bundle xmlns="http://hl7.org/fhir">
 </entry>
 </Bundle>`
 
-export default encounter;
+export default encounterXML;
