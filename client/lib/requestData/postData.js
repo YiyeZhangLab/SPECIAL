@@ -7,7 +7,7 @@ const gcp_api_url = "https://us-east4-ml.googleapis.com/v1/projects/green-orb-36
 
 const postData = async (url = '', item = {}) => {
     // Cross-origin posting
-    console.log(item);
+    // console.log(item);
     try {
         let token = "";
         await fetch(auth_url, {
