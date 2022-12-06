@@ -9,5 +9,8 @@
   "author": "",
   "license": "ISC",
   "keywords": [],
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "xml-js": "^1.6.11"
+  }
 }
