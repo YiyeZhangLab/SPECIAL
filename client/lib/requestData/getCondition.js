@@ -41,8 +41,10 @@ const parseCondition = async (condition_xml, pregnancyStart, pregnancyEnd, myApp
 }
 
 const getCondition = async (myApp, pregnancyStart, pregnancyEnd) => {
-    const loincs = [ encodeURIComponent("http://loinc.org|4548-4") ] //4548-4 = HgA1C  //4544-3 = hematocrit
-    const URL = myApp.smart.state.serverUrl+"/Condition?patient="+myApp.smart.patient.id+"&category=encounter-diagnosis&limit=50&code="+loincs.join(",");
+    const URL = myApp.smart.state.serverUrl+"/Condition?patient="+myApp.smart.patient.id+"&category=encounter-diagnosis";
+
+    // TODO: uncomment the following chunck when client permission is set up correctly
+
     // const res = await fetch(URL, {
     //     headers: {
     //         authorization:
@@ -50,6 +52,7 @@ const getCondition = async (myApp, pregnancyStart, pregnancyEnd) => {
     //     },
     // });
     // const conditionXML = await res.text();
+    
     const conditionJSON = parseCondition(sampleResCondSearch, pregnancyStart, pregnancyEnd, myApp);
     return conditionJSON;
 };

@@ -1,5 +1,4 @@
 import * as convert from "xml-js";
-// import socialHistory from './PregnancyStatus.xml'
 import pregnancyStatus from "../test_data/pregnancyStatus"
 
 // TODO: add check when user not permitting
@@ -31,16 +30,13 @@ const parseSocialHistory = (xml) => {
 };
 
 const getPregnancyStart = async (myApp) => {
-    // const loincs = [encodeURIComponent("http://loinc.org|4548-4")]; //4548-4 = HgA1C  //4544-3 = hematocrit
     const URL =
         myApp.smart.state.serverUrl +
         "/Observation?patient=" +
         myApp.smart.patient.id +
         "&category=social-history"
-        // &limit=50&code=" +
-        // loincs.join(",");
 
-    // TODO: uncomment this when switch to client_id with social history permission
+    // TODO: uncomment the following chunck when client permission is set up correctly
     // const res = await fetch(URL, {
     //     headers: {
     //         // Accept: "application/json+fhir",
@@ -49,7 +45,7 @@ const getPregnancyStart = async (myApp) => {
     //     },
     // });
     // const socialHistory = await res.text();
-    // console.log(`Received SocialHistoryXML: ${socialHistory}`);
+
     const pregnancyStart = parseSocialHistory(pregnancyStatus);
     return pregnancyStart;
 };

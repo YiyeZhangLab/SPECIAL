@@ -10,6 +10,9 @@ const getEncounterPeriod = (xml) => {
 
 const getConditionPeriod = async (myApp, encounterId) => {
     const URL = myApp.smart.state.serverUrl+"/Encounter?subject="+encounterId;
+
+    // TODO: uncomment the following chunck when client permission is set up correctly
+
     // const res = await fetch(URL, {
     //     headers: {
     //         authorization:
@@ -17,6 +20,7 @@ const getConditionPeriod = async (myApp, encounterId) => {
     //     },
     // });
     // const encounterXML = await res.text();
+    
     const conditionPeriod = getEncounterPeriod(encounter);
     return conditionPeriod;
 };

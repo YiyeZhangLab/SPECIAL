@@ -12,14 +12,13 @@ const parseVitalsigns = (xml) => {
 };
 
 const getPregnancyEnd = async (myApp) => {
-    // const loincs = [encodeURIComponent("http://loinc.org|4548-4")]; //4548-4 = HgA1C  //4544-3 = hematocrit
     const URL =
         myApp.smart.state.serverUrl +
         "/Observation?patient=" +
         myApp.smart.patient.id +
         "&category=vital-signs";
-        // &limit=50&code=" +
-        // loincs.join(",");
+
+    // TODO: uncomment the following chunck when client permission is set up correctly
 
     // const res = await fetch(URL, {
     //     headers: {
@@ -28,7 +27,6 @@ const getPregnancyEnd = async (myApp) => {
     //             "Bearer " + myApp.smart.state.tokenResponse.access_token,
     //     },
     // });
-
     // const vitalsigns = await res.text();
 
     const pregnancyEnd = parseVitalsigns(vitalsigns);
