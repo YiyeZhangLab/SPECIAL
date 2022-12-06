@@ -1,6 +1,6 @@
 const postData = async (url = '', data = {}) => {
     // Cross-origin posting
-    console.log(data);
+    // console.log(data);
     try {
         const response = await fetch(url, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
