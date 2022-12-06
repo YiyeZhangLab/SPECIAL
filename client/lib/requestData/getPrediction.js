@@ -11,7 +11,6 @@ const combineData = (patient, conditions) => {
 
 const getPrediction = async () => {
     const myApp = {}
-    const backendServerURL = 'http://localhost:3000';
 
     myApp.smart = await FHIR.oauth2.ready();
     
@@ -25,7 +24,7 @@ const getPrediction = async () => {
     console.log(Condition)
     const binaryInput = combineData(Patient, Condition);
     console.log(binaryInput)
-    const res = await postData(backendServerURL, binaryInput);
+    const res = await postData(binaryInput);
     console.log(`Prediction result: ${res}`);
 }
 
