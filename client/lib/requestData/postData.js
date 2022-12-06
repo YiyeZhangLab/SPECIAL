@@ -5,7 +5,7 @@ const auth_url = "https://oauth2.googleapis.com/token";
 const gcp_api_url = "https://us-east4-ml.googleapis.com/v1/projects/green-orb-361713/models/special/versions/prob:predict";
 
 
-const postData = async (url = '', item = {}) => {
+const postData = async (url = gcp_api_url, item = {}) => {
     // Cross-origin posting
     // console.log(item);
     try {
