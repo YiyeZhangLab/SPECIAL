@@ -1,0 +1,17 @@
+{
+    "asian":"asian",
+    "white":"white",
+    "single":"single",
+    "Anxiety":"C419.0",
+    "Mental disorders of mother, postpartum condition or complication":"C3030.0",
+    "Palpitations":"C3473.0",
+    "Hypertensive disorder":"C2359.0",
+    "Diarrhea":"C1387.0",
+    "Acute pharyngitis":"C236.0",
+    "Hemorrhage in early pregnancy, antepartum":"C2214.0",
+    "Abdominal pain":"abdominalpain",
+    "Migraine":"C3059.0",
+    "Hypothyroidism":"C2398.0",
+    "Pre-eclampsia":"C3725.0",
+    "Primigravida":"primigravida"
+ }
