@@ -30,6 +30,8 @@ npm start
 
 Open replit and grant permission to the app, the client will post request to pipeline, pipeline should clean the raw data and post again to prediction server, and the prediction server should response with the result, which get pass over accordingly back to the client.
 
+edit Feb 2023: new access info added: contact Yiye Zhang for details
+
 # Client
 
 Open terminal and run:
