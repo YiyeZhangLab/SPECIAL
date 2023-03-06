@@ -37,6 +37,7 @@ edit Feb 2023: new access info added: contact Yiye Zhang for details
 Open terminal and run:
 
 ```
+cd ./client
 npm i start
 npm run build
 npm run dev
