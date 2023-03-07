@@ -50,7 +50,7 @@ Edit files in `/pages`
 To output the result to Replit, run:
 
 ```
-npm build
+npm run build
 ```
 
 This will optimize your code and export static content in `/out`
